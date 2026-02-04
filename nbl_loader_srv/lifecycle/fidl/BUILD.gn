@@ -1,0 +1,9 @@
+import("//garnet/public/lib/fidl/build/fidl/fidl.gni")
+
+fidl("fidl") {
+  name = "nbl_loader"
+  sources = [
+    "nbl_loader.fidl",
+  ]
+  sdk_candidate = true
+}

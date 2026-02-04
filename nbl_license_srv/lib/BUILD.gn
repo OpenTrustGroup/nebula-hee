@@ -1,0 +1,60 @@
+# Copyright 2019 GoldenRiver Technology Co., Ltd.
+import("//build/sdk/sdk_atom.gni")
+
+config("nbl_nmt_config") {
+  include_dirs = [
+    ".",
+    "include",
+  ]
+}
+
+static_library("libnbl_nmt_tee") {
+  sources = [
+      "nmt_tee_client.c",
+  ]
+
+  public_configs = [ ":nbl_nmt_config" ]
+
+  deps = [
+    "//third_party/hee-trusty/nbl_fwk",
+    "//zircon/trusty/lib/lib/libc-trusty",
+  ]
+}
+
+#################################################
+## SDK
+#################################################
+
+sdk_atom("libnbl_nmt_tee_sdk") {
+  domain = "cpp"
+  name = "libnbl_nmt_tee"
+
+  tags = [
+    "type:compiled_shared",
+    "arch:target"
+  ]
+
+  output_category = "hee/nbl_fwk_hee"
+
+  files = []
+
+  # copy all head files into sdk.
+  all_files = exec_script("//build/sdk/list_files.sh", [rebase_path("include", root_build_dir)], "list lines")
+  foreach(f, all_files) {
+    files += [ {
+      source = "include/$f"
+      dest = "include/$f" } ]
+  }
+
+  # copy static libraries.
+  files += [
+    {
+      source = "$target_out_dir/libnbl_nmt_tee.a"
+      dest = "lib/libnbl_nmt_tee.a"
+    }
+  ]
+
+  non_sdk_deps = [
+    ":libnbl_nmt_tee",
+  ]
+}

@@ -1,0 +1,7 @@
+library provider;
+
+[ServiceName="provider.TaProvider"]
+interface TaProvider {
+  1: GetTaApp(string? path) -> (handle? vmo, uint64 size, int32 err, string manifest_json);
+  2: SetTaRestartFlg(string? path, uint32 flag);
+};

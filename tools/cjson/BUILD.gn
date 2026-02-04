@@ -1,0 +1,16 @@
+# Copyright 2019 GoldenRiver Technology Co., Ltd.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+config("cjson_config") {
+  include_dirs = [ "." ]
+}
+
+source_set("cjson") {
+  public_configs = [ ":cjson_config" ]
+
+  sources = [
+    "cJSON.c",
+    "cJSON.h"
+  ]
+}

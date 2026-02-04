@@ -1,0 +1,108 @@
+# Copyright 2018 GoldenRiver Technology Co., Ltd.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/nebula/nbl_sdk_library.gni")
+import("//build/package.gni")
+
+config("nbl_fwk_config") {
+  include_dirs = [
+    ".",
+    "include",
+  ]
+
+  defines = [
+    "NEBULA_CONFIG_UREE_SUPPORT=1"
+  ]
+
+  cflags = [
+    "-fPIC"
+  ]
+}
+
+config("nbl_fwk_priv_config") {
+  include_dirs = [
+    "//zircon/trusty/lk/trusty/include/pal",
+    "//zircon/kernel/include",
+  ]
+
+  defines = [
+  ]
+
+  cflags = [
+  ]
+
+  if (is_debug) {
+    defines += [ "DEBUG=1" ]
+    cflags += [
+      "-fno-omit-frame-pointer",
+      "-fno-optimize-sibling-calls",
+      "-g"
+    ]
+  }
+}
+
+fwk_source = [
+  "src/service.c",
+  "src/stream.c",
+  "src/common.c",
+  "src/uuid.c",
+  "src/sysinfo.c",
+  "src/log.c",
+  "src/time.c",
+  "src/lifecycle.cc",
+]
+
+# for other package
+source_set("nbl_fwk") {
+  sources = fwk_source
+
+  deps = [
+    "//zircon/trusty/lib/lib/libc-trusty",
+    "//zircon/trusty/lib/interface/mtee",
+    "//zircon/trusty/lib/lib/mtee_api",
+    "//zircon/public/lib/zx",
+  ]
+
+  public_configs = [ ":nbl_fwk_config" ]
+  configs += [ ":nbl_fwk_priv_config" ]
+}
+
+# for sdk.
+static_library("libnbl_fwk_hee") {
+
+  sources = fwk_source
+
+  public_configs = [ ":nbl_fwk_config" ]
+  configs += [ ":nbl_fwk_priv_config" ]
+
+  deps = [
+    "//zircon/trusty/lib/lib/libc-trusty",
+    "//zircon/trusty/lib/interface/mtee",
+    "//zircon/trusty/lib/lib/mtee_api",
+    "//zircon/public/lib/zx",
+  ]
+}
+
+#################################################
+## SDK
+#################################################
+
+nbl_sdk_library("libnbl_fwk_hee_sdk") {
+  name = "nbl_fwk_hee"
+  category = "hee"
+  hdr_dir = "include"
+  libs = [
+    "libnbl_fwk_hee.a",
+  ]
+  deps = [
+    ":libnbl_fwk_hee",
+    "//third_party/hee-trusty/nbl_loader_srv/lifecycle/fidl",
+  ]
+  files = [
+    {
+      source = "//zircon/trusty/lk/trusty/include/pal/shared/lk/list.h"
+      dest = "include/lk/list.h"
+    },
+  ]
+}

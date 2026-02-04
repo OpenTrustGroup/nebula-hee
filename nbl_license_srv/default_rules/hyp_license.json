@@ -1,0 +1,12 @@
+{
+    "version":1,
+    "features":
+    {
+        "max_vm":4,
+        "trace_tool":true,
+        "monitor_tool":true,
+        "install_ta":false
+    },
+    "expire_after_days":0,
+    "machine_code":""
+}

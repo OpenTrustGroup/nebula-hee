@@ -1,0 +1,56 @@
+# Copyright 2018 GoldenRiver Technology Co., Ltd.
+# Copyright 2017 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/package.gni")
+
+config("public_config") {
+  include_dirs = [
+    "include",
+  ]
+}
+
+source_set("loader") {
+  sources = [
+    "loader.c"
+  ]
+
+  public_configs = [
+    ":public_config",
+  ]
+
+  public_deps = [
+    "//third_party/hee-trusty/nbl_fwk",
+    "//zircon/trusty/lib/lib/libc-trusty",
+  ]
+
+  include_dirs = [
+    "//third_party/hee-trusty",
+  ]
+}
+
+executable("bin") {
+  output_name = "load_ha"
+
+  sources = [
+    "main.c"
+  ]
+
+  deps = [
+    ":loader",
+    "//third_party/hee-trusty/nbl_fwk",
+  ]
+}
+
+package("load_ha") {
+  system_image = true
+
+  deps = [
+    ":bin",
+  ]
+
+  binaries = [ {
+        name = "load_ha" in_image="!release"
+      } ]
+}

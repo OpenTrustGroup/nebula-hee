@@ -1,0 +1,19 @@
+// Copyright 2018 The Fuchsia Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+library secmgr;
+
+//uuid
+struct UUID {
+   uint32 time_low;
+   uint16 time_mid;
+   uint16 time_hi_and_version;
+   array<uint8>:8 clock_seq_and_node;
+};
+
+[ServiceName="secmgr.TrustyAppLoader"]
+interface TrustyAppLoader {
+  1:Load(UUID uuid) -> (handle? vmo, uint64 size, int32 err, string manifest_json);
+  2:FindAutoStartTAs() -> (vector<string>? tas);
+};

@@ -1,0 +1,44 @@
+# Copyright 2019 GoldenRiver Technology Co., Ltd.
+
+# Now it's not opened to third-party developers, so no sdk.
+# But, nbl_fuzzer in SDK/examples to Security Testing needs this, so export to nbl_fuzzer.
+import("//build/sdk/sdk_atom.gni")
+import("//build/nebula/nbl_sdk_library.gni")
+
+config("nbl_nsc_config") {
+  include_dirs = [
+    ".",
+    "include",
+    "//third_party/hee-trusty/nbl_nsc/server",
+  ]
+}
+
+static_library("libnbl_nsc") {
+  sources = [
+      "nss_client.c",
+      "nsc_srv.c",
+      "fwk_ext.c",
+      "time_client.c",
+    ]
+
+  public_configs = [ ":nbl_nsc_config" ]
+
+  deps = [
+    "//third_party/hee-trusty/nbl_fwk",
+    "//zircon/public/lib/async-loop-cpp",
+    "//garnet/public/lib/app/cpp",
+    "//zircon/trusty/lib/lib/libc-trusty",
+  ]
+}
+
+nbl_sdk_library("libnbl_nsc_sdk") {
+  name = "nbl_nsc"
+  category = "hee"
+  hdr_dir = "include"
+  libs = [
+    "libnbl_nsc.a",
+  ]
+  deps = [
+    ":libnbl_nsc",
+  ]
+}

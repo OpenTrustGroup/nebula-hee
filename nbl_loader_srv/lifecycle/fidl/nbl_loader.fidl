@@ -1,0 +1,13 @@
+library nbl_loader;
+
+[ServiceName="nbl_loader.TaController"]
+interface TaController {
+  // Waiting for TA to be launched by loader
+  1: WaitForLaunch() -> ();
+
+  // Wait until TA entering main loop
+  2: WaitForMainLoop(int64 timeout_ms) -> (int32 result);
+
+  // Tell TA quit main loop
+  3: QuitMainLoop();
+};

@@ -1,0 +1,34 @@
+# Copyright GoldenRiver Technology Co., Ltd.; prebuilt by open-ddk from
+# third_party/hee-trusty/nbl_loader_srv/lifecycle/BUILD.gn: executables are the tag's binaries.
+# Copyright 2021 GoldenRiver Technology Co., Ltd.
+# Copyright 2017 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//garnet/public/lib/fidl/build/fidl/fidl.gni")
+import("//build/package.gni")
+
+group("lib") {
+}
+
+# open-ddk: the prebuilt binary beside it, built from source in the tag's tree
+copy("tests") {
+  sources = [ "//third_party/hee-trusty/nbl_loader_srv/lifecycle/nbl_loader_tests" ]
+  outputs = [ "$root_out_dir/nbl_loader_tests" ]
+}
+
+package("nbl_loader_tests") {
+  system_image = true
+  testonly = true
+
+  deps = [
+    ":tests",
+  ]
+
+  tests = [
+    {
+      destdir = "loader"
+      name = "nbl_loader_tests"
+    },
+  ]
+}

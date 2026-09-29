@@ -1,0 +1,41 @@
+# Copyright GoldenRiver Technology Co., Ltd.; prebuilt by open-ddk from
+# third_party/hee-trusty/nbl_nsc/example/BUILD.gn: executables are the tag's binaries.
+# Copyright 2019 GoldenRiver Technology Co., Ltd.
+
+import("//build/package.gni")
+
+config("config") {
+  defines = [
+  ]
+
+  cflags = [
+  ]
+
+  if (is_debug) {
+    defines += [ "DEBUG=1" ]
+  }
+
+  include_dirs = [
+    ".",
+    "//zircon/trusty/lib/include/user",
+  ]
+}
+
+# open-ddk: the prebuilt binary beside it, built from source in the tag's tree
+copy("bin") {
+  sources = [ "//third_party/hee-trusty/nbl_nsc/example/nss_ha" ]
+  outputs = [ "$root_out_dir/nss_ha" ]
+}
+
+package("nss_ha") {
+  system_image = true
+  testonly = true
+
+  deps = [
+    ":bin",
+  ]
+
+  tests = [
+    { destdir="nsc" name = "nss_ha" }
+  ]
+}

@@ -1,0 +1,70 @@
+# Copyright GoldenRiver Technology Co., Ltd.; prebuilt by open-ddk from
+# third_party/hee-trusty/nbl_loader_srv/BUILD.gn: executables are the tag's binaries.
+# Copyright 2018 GoldenRiver Technology Co., Ltd.
+# Copyright 2017 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/package.gni")
+
+config("config_for_release") {
+  visibility = [":*"]
+
+  include_dirs = [
+    ".",
+    "//zircon/trusty/lib/include/user",
+    "//zircon/trusty/lk/trusty/include/pal"
+  ]
+}
+
+config("config_for_debug") {
+  visibility = [":*"]
+
+  include_dirs = [
+    ".",
+    "//zircon/trusty/lib/include/user",
+    "//zircon/trusty/lk/trusty/include/pal"
+  ]
+
+  defines = [
+    "USE_INLINE_KEY",
+    "LOAD_ELF",
+    "NBL_DEBUG=1",
+  ]
+
+  cflags = [
+    "-fno-omit-frame-pointer",
+    "-fno-optimize-sibling-calls",
+    "-g"
+  ]
+}
+
+
+
+
+
+# open-ddk: the prebuilt binary beside it, built from source in the tag's tree
+copy("bin.debug") {
+  sources = [ "//third_party/hee-trusty/nbl_loader_srv/nbl_loader_srv.debug" ]
+  outputs = [ "$root_out_dir/nbl_loader_srv.debug" ]
+}
+
+# open-ddk: the prebuilt binary beside it, built from source in the tag's tree
+copy("bin.release") {
+  sources = [ "//third_party/hee-trusty/nbl_loader_srv/nbl_loader_srv.release" ]
+  outputs = [ "$root_out_dir/nbl_loader_srv.release" ]
+}
+
+package("nbl_loader_srv") {
+  system_image = true
+
+  deps = [
+    ":bin.release",
+    ":bin.debug",
+  ]
+
+  binaries = [
+    {name = "nbl_loader_srv.release" dest="nbl_loader_srv" in_image="release"},
+    {name = "nbl_loader_srv.debug" dest="nbl_loader_srv" in_image="debug"},
+  ]
+}

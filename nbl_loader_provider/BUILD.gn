@@ -1,0 +1,35 @@
+# Copyright GoldenRiver Technology Co., Ltd.; prebuilt by open-ddk from
+# third_party/hee-trusty/nbl_loader_provider/BUILD.gn: executables are the tag's binaries.
+# Copyright 2018 GoldenRiver Technology Co., Ltd.
+# Copyright 2017 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/package.gni")
+
+config("nbl_loader_provider_config") {
+  include_dirs = [
+    ".",
+    "//zircon/trusty/lib/include/user",
+    "//third_party/hee-trusty/nbl_fwk/include/nbl_fwk",
+    "//zircon/trusty/lk/trusty/include/uapi"
+  ]
+}
+
+# open-ddk: the prebuilt binary beside it, built from source in the tag's tree
+copy("bin") {
+  sources = [ "//third_party/hee-trusty/nbl_loader_provider/nbl_loader_provider" ]
+  outputs = [ "$root_out_dir/nbl_loader_provider" ]
+}
+
+package("nbl_loader_provider") {
+  system_image = true
+
+  deps = [
+    ":bin",
+  ]
+
+  binaries = [ {
+        name = "nbl_loader_provider"
+      } ]
+}

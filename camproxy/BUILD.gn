@@ -1,0 +1,50 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/camproxy/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2018 GoldenRiver Technology Co., Ltd.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/sdk/sdk_atom.gni")
+import("//build/package.gni")
+
+# export header file is : seccamlib.h.
+group("libcamproxy") {
+}
+
+group("bin") {
+}
+
+group("benchmark") {
+}
+
+group("test") {
+}
+
+group("mlvm_app") {
+}
+
+group("libcamproxy_benchmark") {
+}
+
+group("libcamproxy_test") {
+}
+
+#################################################
+## SDK
+#################################################
+
+import("//build/nebula/nbl_sdk_library.gni")
+
+sdk_atom("camproxy_sdk") {
+  domain = "cpp"
+  name = "camproxy_sdk"
+  files = []
+}
+
+# open-ddk: the targets its templates made
+group("libcamproxy_benchmark__manifest") {
+}
+group("libcamproxy_test__manifest") {
+}
+group("mlvm_app__manifest") {
+}

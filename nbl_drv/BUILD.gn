@@ -1,0 +1,35 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_drv/BUILD.gn: no image needs these targets, nothing builds them.
+#Copyright 2019 GoldenRiver Technologies Co., Ltd.All rights reserved.
+#Use of this source code is governed by a BSD - style license that can be
+#found in the LICENSE file.
+
+import("//build/gn/config.gni")
+import("//build/sdk/sdk_atom.gni")
+
+config("config") {
+  include_dirs = [ "include/" ]
+}
+
+group("libnbl_drv_header") {
+}
+
+group("libnbl_drv") {
+}
+
+###########################################################
+## nbl_drv_sdk
+##    Consists of headers and .a for developing drivers.
+##    Currently it's limited to display and touch driver.
+##    TODO: a general driver fwk based on platform device.
+###########################################################
+group("libnbl_drv_sdk") {
+}
+
+###########################################################
+## driver_sdk
+##    Copy from //zircon/public/lib/driver/BUILD.gn, removed
+##    some unnecessary files (e.g., usb.h)
+###########################################################
+group("driver_sdk") {
+}

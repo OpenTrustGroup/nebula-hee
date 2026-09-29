@@ -1,0 +1,54 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_tar/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2022 GoldenRiver Technology Co., Ltd.
+
+import("//build/sdk/sdk_atom.gni")
+# libtar: create and extract file about TAR format.
+# Build and export libtar to sdk.
+
+import("//build/nebula/nbl_sdk_library.gni")
+import("//build/package.gni")
+
+#################################################
+## Build static library
+#################################################
+
+# public config for other package
+config("libtar_config") {
+  include_dirs = [
+    ".",
+    "include",
+  ]
+
+  cflags = [
+    "-fPIC"
+  ]
+}
+
+# private config for build this.
+config("libtar_priv_config") {
+  include_dirs = [
+  ]
+
+  defines = [
+  ]
+
+  cflags = [
+  ]
+}
+
+
+
+# for sdk.
+group("libnbl_tar") {
+}
+
+#################################################
+## export to SDK
+#################################################
+
+sdk_atom("libnbl_tar_sdk") {
+  domain = "cpp"
+  name = "libnbl_tar_sdk"
+  files = []
+}

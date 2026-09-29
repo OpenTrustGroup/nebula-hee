@@ -1,0 +1,23 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/trusty/external/libcppbor/BUILD.gn: no image needs these targets, nothing builds them.
+#Copyright 2021 GoldenRiver Technologies Co., Ltd.All rights reserved.
+#Use of this source code is governed by a BSD - style license that can be
+#found in the LICENSE file.
+
+import("//build/package.gni")
+
+config("cppbor_config") {
+  include_dirs = [
+    "include/cppbor",
+    "//third_party/hee-trusty/trusty/external/span/include/tcb",
+  ]
+  cflags_cc = [ "-std=c++17" ]
+  cflags_objcc = cflags_cc
+}
+
+config("pub_cppbor_config") {
+  include_dirs = [ "include/cppbor" ]
+}
+
+group("cppbor") {
+}

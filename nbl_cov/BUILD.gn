@@ -1,0 +1,59 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_cov/BUILD.gn: no image needs these targets, nothing builds them.
+
+# Copyright 2022 GoldenRiver Technology Co., Ltd.
+
+import("//build/sdk/sdk_atom.gni")
+# libcov: support coverage function for clang.
+# Build and export libnbl_cov to sdk.
+
+import("//build/nebula/nbl_sdk_library.gni")
+import("//build/package.gni")
+
+#################################################
+## Build static library
+#################################################
+
+# public config for other package
+config("libcov_config") {
+  include_dirs = [
+    ".",
+  ]
+
+  cflags = [
+    "-fPIC"
+  ]
+}
+
+# private config for build this.
+config("libcov_priv_config") {
+  include_dirs = [
+    "//zircon/trusty/lib/include/user",
+    "//third_party/hee-trusty",
+    "//third_party/hee-trusty/nbl_fwk/src",
+    "//third_party/hee-trusty/nbl_nsc/lib/include",
+    "//third_party/hee-trusty/libtar",
+  ]
+
+  defines = [
+  ]
+
+  cflags = [
+  ]
+}
+
+
+
+# for sdk.
+group("libnbl_cov") {
+}
+
+#################################################
+## export to SDK
+#################################################
+
+sdk_atom("libnbl_cov_sdk") {
+  domain = "cpp"
+  name = "libnbl_cov_sdk"
+  files = []
+}

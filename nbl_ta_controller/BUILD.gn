@@ -1,0 +1,26 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_ta_controller/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2021 GoldenRiver Technology Co., Ltd.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/sdk/sdk_atom.gni")
+import("//build/nebula/nbl_sdk_library.gni")
+import("//build/package.gni")
+
+config("config") {
+  include_dirs = [
+    ".",
+    "//third_party/hee-trusty/nbl_fwk/src",
+  ]
+}
+
+group("libnbl_ta_controller") {
+}
+
+
+sdk_atom("libnbl_ta_controller_sdk") {
+  domain = "cpp"
+  name = "libnbl_ta_controller_sdk"
+  files = []
+}

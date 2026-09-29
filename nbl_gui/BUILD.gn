@@ -1,0 +1,58 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_gui/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2018 GoldenRiver Technology Co., Ltd.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/package.gni")
+import("//build/sdk/sdk_atom.gni")
+import("//build/nebula/nbl_sdk_library.gni")
+
+config("trace_available") {
+  defines = [ "TRACE_AVAILABLE" ]
+}
+
+config("nbl_gui_config") {
+  include_dirs = [ "include", "." ]
+  cflags_cc = [ "-fexceptions" ]
+  cflags_objcc = cflags_cc
+}
+
+config("nbl_gui_public_config") {
+  include_dirs = [ "include" ]
+  cflags_cc = [ "-fexceptions" ]
+  cflags_objcc = cflags_cc
+}
+
+group("lib") {
+}
+
+group("nbl_gui") {
+}
+
+group("libnbl_gui") {
+}
+
+group("test") {
+}
+
+group("nbl_gui_test") {
+}
+
+#################################################
+## SDK
+#################################################
+
+sdk_atom("libnbl_gui_sdk") {
+  domain = "cpp"
+  name = "libnbl_gui_sdk"
+  files = []
+}
+
+group("docs") {
+}
+# open-ddk: the targets its templates made
+group("libnbl_gui__manifest") {
+}
+group("nbl_gui_test__manifest") {
+}

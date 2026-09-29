@@ -1,0 +1,23 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_benchmark_sdk/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2020 GoldenRiver Technology Co., Ltd.
+# Copyright 2016 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/sdk/sdk_atom.gni")
+import("//build/package.gni")
+import("//build/nebula/nbl_sdk_library.gni")
+
+group("lib") {
+}
+
+#################################################
+## SDK
+#################################################
+
+sdk_atom("benchmark_sdk") {
+  domain = "cpp"
+  name = "benchmark_sdk"
+  files = []
+}

@@ -1,0 +1,15 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/tools/cjose/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2019 GoldenRiver Technology Co., Ltd.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+config("cjose_config") {
+  include_dirs = [
+    "src/include",
+    "include"
+  ]
+}
+
+group("cjose") {
+}

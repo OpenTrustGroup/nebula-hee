@@ -1,0 +1,24 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/gp/tests/echo_ta/BUILD.gn: no image needs these targets, nothing builds them.
+#Copyright 2019 GoldenRiver Technologies Co., Ltd.All rights reserved.
+#Use of this source code is governed by a BSD - style license that can be
+#found in the LICENSE file.
+
+import("//build/package.gni")
+
+config("config_for_debug") {
+  include_dirs = [ "include" ]
+  defines = [
+    "NBL_DEBUG=1",
+  ]
+}
+
+config("config_for_release") {
+  include_dirs = [ "include" ]
+}
+
+group("bin_ta") {
+}
+
+group("echo_ta") {
+}

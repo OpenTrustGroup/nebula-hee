@@ -1,0 +1,115 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_secmgr_srv/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2018 GoldenRiver Technology Co., Ltd.
+# Copyright 2017 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/package.gni")
+
+config("config") {
+  include_dirs = [
+    ".",
+    "//zircon/trusty/lib/include/user",
+    "common",
+    "crypto",
+    "util",
+    "keystore",
+    "otrp",
+    "//third_party/hee-trusty",
+    "//third_party/hee-trusty/nbl_nsc/lib/include"
+  ]
+
+  release_key_dir = getenv("SECMGR_RELEASE_KEY")
+  if(release_key_dir != ""){
+    print("secmgr def SECMGR_RELEASE_KEY")
+
+    secmgr_hee_name_config = exec_script("//build/secmgr/read_secmgr_config.sh", [rebase_path("${release_key_dir}")], "list lines")
+    if(secmgr_hee_name_config[0] != ""){#0 hee name
+      print("secmgr hee name:${secmgr_hee_name_config[0]}")
+      defines = [
+        "GRT_LOG_LEVEL=4",
+        "SECMGR_KEY_RELEASE",
+        "HEE_NAME=\"${secmgr_hee_name_config[0]}\""
+      ]
+    }else{
+      defines = [
+        "GRT_LOG_LEVEL=4",
+        "SECMGR_KEY_RELEASE"
+      ]
+    }
+  }else{
+    print("secmgr undef SECMGR_RELEASE_KEY")
+    defines = [
+      "GRT_LOG_LEVEL=4"
+    ]
+  }
+
+  cflags = [
+  ]
+}
+
+config("config_debug") {
+  include_dirs = [
+    ".",
+    "//zircon/trusty/lib/include/user",
+    "common",
+    "crypto",
+    "util",
+    "keystore",
+    "otrp",
+    "//third_party/hee-trusty"
+  ]
+
+  release_key_dir = getenv("SECMGR_RELEASE_KEY")
+  if(release_key_dir != ""){
+    print("secmgr def SECMGR_RELEASE_KEY")
+
+    secmgr_hee_name_config = exec_script("//build/secmgr/read_secmgr_config.sh", [rebase_path("${release_key_dir}")], "list lines")
+    if(secmgr_hee_name_config[0] != ""){#0 hee name
+      print("secmgr hee name:${secmgr_hee_name_config[0]}")
+      defines = [
+        "GRT_LOG_LEVEL=4",
+        "SECMGR_KEY_RELEASE",
+        "SECMGR_DEBUG",
+        "HEE_NAME=\"${secmgr_hee_name_config[0]}\""
+      ]
+    }else{
+      defines = [
+        "GRT_LOG_LEVEL=4",
+        "SECMGR_KEY_RELEASE",
+        "SECMGR_DEBUG"
+      ]
+    }
+  }else{
+    print("secmgr undef SECMGR_RELEASE_KEY")
+    defines = [
+      "GRT_LOG_LEVEL=4",
+      "SECMGR_DEBUG"
+    ]
+  }
+
+  cflags = [
+  ]
+}
+
+group("secmgr_src") {
+}
+
+group("secmgr_src_debug") {
+}
+
+group("bin.release") {
+}
+
+group("bin.debug") {
+}
+
+group("test") {
+}
+
+group("nbl_secmgr_srv") {
+}
+
+group("nbl_secmgr_test") {
+}

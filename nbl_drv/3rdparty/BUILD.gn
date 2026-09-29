@@ -1,0 +1,13 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_drv/3rdparty/BUILD.gn: no image needs these targets, nothing builds them.
+#Copyright 2019 GoldenRiver Technologies Co., Ltd.All rights reserved.
+#Use of this source code is governed by a BSD - style license that can be
+#found in the LICENSE file.
+
+import("//build/config/fuchsia/rules.gni")
+import("tui_driver.gni")
+
+group("mt6771") {
+}
+group("mt6761") {
+}

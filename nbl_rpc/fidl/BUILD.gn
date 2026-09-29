@@ -1,0 +1,21 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_rpc/fidl/BUILD.gn: no image needs these targets, nothing builds them.
+import("//garnet/public/lib/fidl/build/fidl/fidl.gni")
+
+import("//build/sdk/sdk_atom.gni")
+group("fidl") {
+}
+# open-ddk: the targets its templates made
+group("fidl_compile") {
+}
+group("fidl_cpp_generate") {
+}
+group("fidl_response_file") {
+}
+sdk_atom("fidl_sdk") {
+  domain = "cpp"
+  name = "fidl_sdk"
+  files = []
+}
+group("fidl_verify") {
+}

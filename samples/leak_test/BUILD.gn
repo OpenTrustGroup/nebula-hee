@@ -1,0 +1,30 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/samples/leak_test/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2018 GoldenRiver Technology Co., Ltd.
+# Copyright 2017 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/package.gni")
+
+config("config") {
+  defines = [
+  ]
+
+  cflags = [
+    "-fno-omit-frame-pointer",
+    "-fno-optimize-sibling-calls",
+    "-g"
+  ]
+
+  if (is_debug) {
+    defines += [ "DEBUG=1" ]
+  }
+}
+
+
+group("bin") {
+}
+
+group("leak_test") {
+}

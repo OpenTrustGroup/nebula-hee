@@ -1,0 +1,30 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_gtest/BUILD.gn: no image needs these targets, nothing builds them.
+import("//build/package.gni")
+import("//build/nebula/nbl_sdk_library.gni")
+
+import("//build/sdk/sdk_atom.gni")
+config("public_config") {
+  include_dirs = [ "include" ]
+}
+
+group("nbl_gtest") {
+}
+
+group("nbl_gtest_test") {
+}
+
+#################################################
+## SDK
+#################################################
+
+sdk_atom("googletest_sdk") {
+  domain = "cpp"
+  name = "googletest_sdk"
+  files = []
+}
+
+
+# open-ddk: the targets its templates made
+group("nbl_gtest_test__manifest") {
+}

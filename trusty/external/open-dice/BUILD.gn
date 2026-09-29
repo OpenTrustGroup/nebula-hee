@@ -1,0 +1,20 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/trusty/external/open-dice/BUILD.gn: no image needs these targets, nothing builds them.
+#Copyright 2024 GoldenRiver Technologies Co., Ltd.All rights reserved.
+#Use of this source code is governed by a BSD - style license that can be
+#found in the LICENSE file.
+
+import("//build/package.gni")
+
+config("open-dice_config") {
+  include_dirs = [ "include/dice" ]
+  cflags_cc = [ "-std=c++17" ]
+  cflags_objcc = cflags_cc
+}
+
+config("pub_open-dice_config") {
+  include_dirs = [ "include/dice" ]
+}
+
+group("open-dice") {
+}

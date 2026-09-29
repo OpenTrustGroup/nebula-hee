@@ -1,0 +1,14 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/tui/nbl_drvfwk/drvtest/BUILD.gn: no image needs these targets, nothing builds them.
+#Copyright 2019 GoldenRiver Technologies Co., Ltd.All rights reserved.
+#Use of this source code is governed by a BSD - style license that can be
+#found in the LICENSE file.
+
+import("//build/config/fuchsia/rules.gni")
+import("//build/package.gni")
+
+group("nbl_drvtest") {
+}
+
+group("nbl_drv_tests") {
+}

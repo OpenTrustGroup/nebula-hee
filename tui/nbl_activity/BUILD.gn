@@ -1,0 +1,53 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/tui/nbl_activity/BUILD.gn: no image needs these targets, nothing builds them.
+#Copyright 2019 GoldenRiver Technologies Co., Ltd.All rights reserved.
+#Use of this source code is governed by a BSD - style license that can be
+#found in the LICENSE file.
+
+import("//build/package.gni")
+
+config("activity_server_config") {
+  include_dirs = [ "include/server" ]
+}
+
+config("activity_client_config") {
+  include_dirs = [ "include/client" ]
+}
+
+config("activity_ipc_config") {
+  include_dirs = [ "include/ipc" ]
+}
+
+config("public_config") {
+  include_dirs = [ "include" ]
+}
+
+group("rcs_manager") {
+}
+
+group("board_devmgr") {
+}
+
+group("nbl_activity") {
+}
+
+group("bin_tui_ctrl") {
+}
+
+group("bin_tuicb_test") {
+}
+
+group("bin_test") {
+}
+
+group("bin_srv") {
+}
+
+group("nbl_activity_srv") {
+}
+
+group("libnbl_activity") {
+}
+
+group("nbl_activity_tests") {
+}

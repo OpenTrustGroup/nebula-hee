@@ -1,0 +1,21 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/zircon/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2020 GoldenRiver Technology Co., Ltd.
+
+import("//build/sdk/sdk_atom.gni")
+import("//build/gn/config.gni")
+import("//build/nebula/nbl_sdk_library.gni")
+
+#######################################
+## SDK
+#######################################
+
+group("copy_zircon_ulibs") {
+}
+
+
+sdk_atom("zircon_sdk") {
+  domain = "cpp"
+  name = "zircon_sdk"
+  files = []
+}

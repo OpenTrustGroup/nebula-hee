@@ -1,0 +1,28 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_time/test/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2019 GoldenRiver Technology Co., Ltd.
+
+import("//build/package.gni")
+
+config("config") {
+  defines = [
+  ]
+
+  cflags = [
+  ]
+
+  if (is_debug) {
+    defines += [ "DEBUG=1" ]
+  }
+
+  include_dirs = [
+    ".",
+    "//zircon/trusty/lib/include/user",
+  ]
+}
+
+group("test_time") {
+}
+
+group("time_test") {
+}

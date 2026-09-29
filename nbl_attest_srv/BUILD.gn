@@ -1,0 +1,59 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_attest_srv/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2018 GoldenRiver Technology Co., Ltd. All rights reserved.
+
+import("//build/package.gni")
+
+config("attest_config") {
+
+  visibility = [ ":*" ]
+
+  include_dirs = [
+    ".",
+    "include",
+    "api_lib/include",
+    "//zircon/trusty/lib/include/user",
+    "//third_party/hee-trusty",
+    "//third_party/hee-trusty/nbl_nsc/lib/include",
+    "//third_party/hee-trusty/trusty/trusty/user/base/interface/keymaster/include",
+  ]
+
+  tmp_var = exec_script("//build/nebula/shell.sh", ["date", "+%F_%H%M"], "list lines")
+
+  defines = [
+    "CHECK_OS_VERSION=0",
+    "CHECK_KERNEL_CMDLINE=0",
+    "BUILT_TIME=" + "\"" + tmp_var[0] + "\"",
+  ]
+}
+
+
+
+
+
+group("bin") {
+}
+
+group("nbl_attest_srv") {
+}
+
+config("test-config") {
+  visibility = [ ":*" ]
+
+  include_dirs = [
+    "include",
+    "//third_party/hee-trusty",
+  ]
+}
+
+group("test_app") {
+}
+
+group("nbl_attest_test") {
+}
+
+# open-ddk: the targets its templates made
+group("nbl_attest_srv__manifest") {
+}
+group("nbl_attest_test__manifest") {
+}

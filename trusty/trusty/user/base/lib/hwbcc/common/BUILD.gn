@@ -1,0 +1,23 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/trusty/trusty/user/base/lib/hwbcc/common/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2024 GoldenRiver Technology Co., Ltd.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/package.gni")
+
+config("common_config") {
+  include_dirs = [
+    "./include",
+    "//third_party/hee-trusty/trusty/external/open-dice/include",
+    "//third_party/hee-trusty/trusty/external/open-dice/include/dice/config/boringssl_ed25519",
+    "//third_party/hee-trusty/trusty/trusty/user/base/lib/system_state/include",
+    "//third_party/hee-trusty/trusty/trusty/user/base/interface/system_state/include"
+  ]
+  visibility = [
+    ":*",
+  ]
+}
+
+group("common") {
+}

@@ -1,0 +1,52 @@
+# Copyright GoldenRiver Technology Co., Ltd.; stubbed by open-ddk from
+# third_party/hee-trusty/nbl_appstate_srv/BUILD.gn: no image needs these targets, nothing builds them.
+# Copyright 2018 GoldenRiver Technology Co., Ltd. All rights reserved.
+
+import("//build/package.gni")
+
+config("config_for_release") {
+  visibility = [":*"]
+
+  include_dirs = [
+    ".",
+    "//zircon/trusty/lib/lib/libnbl_appstate/include"
+  ]
+}
+
+config("config_for_debug") {
+  visibility = [":*"]
+
+  include_dirs = [
+    ".",
+    "//zircon/trusty/lib/lib/libnbl_appstate/include"
+  ]
+
+  defines = [
+    "NBL_DEBUG=1",
+  ]
+
+  cflags = [
+    "-fno-omit-frame-pointer",
+    "-fno-optimize-sibling-calls",
+    "-g"
+  ]
+}
+
+
+
+
+
+group("bin.debug") {
+}
+
+group("bin.release") {
+}
+
+group("test") {
+}
+
+group("nbl_appstate_srv") {
+}
+
+group("nbl_appstate_test") {
+}

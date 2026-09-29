@@ -1,0 +1,31 @@
+# Copyright GoldenRiver Technology Co., Ltd.; prebuilt by open-ddk from
+# third_party/hee-trusty/nbl_sysinfo_srv/BUILD.gn: executables are the tag's binaries.
+# Copyright 2018 GoldenRiver Technology Co., Ltd. All rights reserved.
+import("//build/package.gni")
+
+config("config") {
+  visibility = [":*"]
+
+  include_dirs = [
+    ".",
+    "//third_party/hee-trusty/nbl_fwk/src",
+  ]
+}
+
+# open-ddk: the prebuilt binary beside it, built from source in the tag's tree
+copy("bin") {
+  sources = [ "//third_party/hee-trusty/nbl_sysinfo_srv/nbl_sysinfo_srv" ]
+  outputs = [ "$root_out_dir/nbl_sysinfo_srv" ]
+}
+
+package("nbl_sysinfo_srv") {
+  system_image = true
+
+  deps = [
+    ":bin",
+  ]
+
+  binaries = [
+    {name = "nbl_sysinfo_srv"}
+  ]
+}

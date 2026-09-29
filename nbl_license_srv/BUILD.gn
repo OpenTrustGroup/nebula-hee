@@ -1,0 +1,44 @@
+# Copyright GoldenRiver Technology Co., Ltd.; prebuilt by open-ddk from
+# third_party/hee-trusty/nbl_license_srv/BUILD.gn: executables are the tag's binaries.
+# Copyright 2018 GoldenRiver Technology Co., Ltd. All rights reserved.
+import("//build/package.gni")
+
+config("config") {
+  visibility = [":*"]
+
+  include_dirs = [
+    ".",
+    "//zircon/trusty/lib/include/user",
+    "base64",
+    "//zircon/trusty/lk/trusty/include/pal",
+  ]
+
+  defines = [
+    "ENABLE_TRUSTY_DEPRECATED_SYSCALL",
+  ]
+}
+
+# open-ddk: the prebuilt binary beside it, built from source in the tag's tree
+copy("bin") {
+  sources = [ "//third_party/hee-trusty/nbl_license_srv/nbl_license_srv" ]
+  outputs = [ "$root_out_dir/nbl_license_srv" ]
+}
+
+package("nbl_license_srv") {
+  system_image = true
+
+  deps = [
+    ":bin",
+  ]
+
+  binaries = [
+    {name = "nbl_license_srv"}
+  ]
+
+  resources = [
+    {
+      path = rebase_path("default_rules/hyp_license.json")
+      dest = "hyp_license.json"
+    },
+  ]
+}

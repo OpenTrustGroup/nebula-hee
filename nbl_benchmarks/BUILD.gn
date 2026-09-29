@@ -1,0 +1,33 @@
+# Copyright GoldenRiver Technology Co., Ltd.; prebuilt by open-ddk from
+# third_party/hee-trusty/nbl_benchmarks/BUILD.gn: executables are the tag's binaries.
+# Copyright 2020 GoldenRiver Technology Co., Ltd.
+# Copyright 2016 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//build/package.gni")
+
+# open-ddk: the prebuilt binary beside it, built from source in the tag's tree
+copy("bin") {
+  sources = [ "//third_party/hee-trusty/nbl_benchmarks/nbl_benchmarks" ]
+  outputs = [ "$root_out_dir/nbl_benchmarks" ]
+}
+
+group("lib") {
+}
+
+package("nbl_benchmarks") {
+  testonly = true
+  system_image = true
+
+  deps = [
+    ":bin",
+  ]
+
+  binaries = [
+    {
+      name = "nbl_benchmarks"
+      in_image="!release"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+// Copyright 2026 The GoldenRiverTek Authors. All rights reserved.
 // Copyright 2018 GoldenRiver Technology Co., Ltd. All rights reserved.
 #ifndef NBL_LICENSE_SRV_NMT_TEE_H_
 #define NBL_LICENSE_SRV_NMT_TEE_H_

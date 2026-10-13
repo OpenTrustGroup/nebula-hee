@@ -1,3 +1,4 @@
+// Copyright 2026 The GoldenRiverTek Authors. All rights reserved.
 // Copyright 2019 GoldenRiver Technology Co., Ltd. All rights reserved.
 #ifndef NBL_LOG_H_
 #define NBL_LOG_H_

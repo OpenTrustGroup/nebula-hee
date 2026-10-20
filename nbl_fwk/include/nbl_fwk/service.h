@@ -26,6 +26,7 @@ extern "C" {
  */
 enum nbl_common {
 	NBL_TIMEOUT_INFINITY = -1, ///< Used for waiting for ever.
+	NBL_TIMEOUT_500_MS = 500,
 };
 
 /**

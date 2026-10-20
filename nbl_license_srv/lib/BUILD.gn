@@ -14,6 +14,7 @@ static_library("libnbl_nmt_tee") {
   ]
 
   public_configs = [ ":nbl_nmt_config" ]
+  configs -= [ "//build/config:symbol_visibility_hidden" ]
 
   deps = [
     "//third_party/hee-trusty/nbl_fwk",
@@ -55,6 +56,32 @@ sdk_atom("libnbl_nmt_tee_sdk") {
   ]
 
   non_sdk_deps = [
+    ":libnbl_nmt_tee",
+  ]
+}
+
+#################################################
+## SDK
+#################################################
+
+import("//build/nebula/nbl_sdk_library.gni")
+
+nbl_sdk_library("nbl_nmt_tee_sdk") {
+  name = "nbl_nmt_tee"
+  category = "hee"
+
+  hdr_dirs = [
+    {
+      source = "include/nbl_fwk"
+      dest = "nbl_fwk"
+    }
+  ]
+
+  libs = [
+    "libnbl_nmt_tee.a",
+  ]
+
+  deps = [
     ":libnbl_nmt_tee",
   ]
 }

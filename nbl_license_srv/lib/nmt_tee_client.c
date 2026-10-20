@@ -35,7 +35,7 @@ static int _nbl_act_license_status(uint32_t cmd, int product) {
 	int buf_size = 0;
 	nmt_cmd_rsp_t *nmt_rsp = NULL;
 
-	rc = nbl_chn_open(LICENSE_FILE_PORT, NBL_TIMEOUT_INFINITY, &chn);
+	rc = nbl_chn_open(LICENSE_FILE_PORT, NBL_TIMEOUT_500_MS, &chn);
 	if (rc < 0) {
 		NBL_LOGE("Failed to connect to service\"%s\" (%d)\n", LICENSE_FILE_PORT,
 				rc);
@@ -51,9 +51,9 @@ static int _nbl_act_license_status(uint32_t cmd, int product) {
 	cmd_response = nbl_stm_create();
 
 	rc = nbl_chn_write_stm_sync(chn, cmd_request, cmd_response,
-			NBL_TIMEOUT_INFINITY);
+			NBL_TIMEOUT_500_MS);
 	if (rc != NBL_NO_ERROR) {
-		NBL_LOGE("Failed to write or read info of HA.\n");
+		NBL_LOGE("Failed to write or read info of HA. (%d)\n", rc);
 		rc = NBL_ERR_CHANNEL_CLOSED;
 		goto release;
 	}
@@ -104,7 +104,7 @@ int nbl_plt_load_inject_data(int slot, uint64_t flags, void *data, int size,
 	nbl_shm_t *shm = NULL;
 	void *shm_base = NULL;
 
-	rc = nbl_chn_open(LICENSE_NMT_TEE_PORT, NBL_TIMEOUT_INFINITY, &chn);
+	rc = nbl_chn_open(LICENSE_NMT_TEE_PORT, NBL_TIMEOUT_500_MS, &chn);
 	if (rc < 0) {
 		NBL_LOGE("Failed to connect to service\"%s\" (%d)\n",
 				LICENSE_NMT_TEE_PORT, rc);
@@ -130,7 +130,7 @@ int nbl_plt_load_inject_data(int slot, uint64_t flags, void *data, int size,
 	cmd_response = nbl_stm_create();
 
 	rc = nbl_chn_write_stm_sync(chn, cmd_request, cmd_response,
-			NBL_TIMEOUT_INFINITY);
+			NBL_TIMEOUT_500_MS);
 	if (rc != NBL_NO_ERROR) {
 		NBL_LOGE("Failed to write or read info of TA (%d).\n", rc);
 		rc = NBL_ERR_IO;
@@ -166,7 +166,7 @@ int nbl_plt_is_device_close() {
 	int buf_size = 0;
 	nmt_cmd_rsp_t *nmt_rsp = NULL;
 
-	rc = nbl_chn_open(LICENSE_FILE_PORT, NBL_TIMEOUT_INFINITY, &chn);
+	rc = nbl_chn_open(LICENSE_FILE_PORT, NBL_TIMEOUT_500_MS, &chn);
 	if (rc < 0) {
 		NBL_LOGE("Failed to connect to service\"%s\" (%d)\n", LICENSE_FILE_PORT,
 				rc);
@@ -183,9 +183,9 @@ int nbl_plt_is_device_close() {
 	cmd_response = nbl_stm_create();
 
 	rc = nbl_chn_write_stm_sync(chn, cmd_request, cmd_response,
-			NBL_TIMEOUT_INFINITY);
+			NBL_TIMEOUT_500_MS);
 	if (rc != NBL_NO_ERROR) {
-		NBL_LOGE("Failed to write or read info of HA.\n");
+		NBL_LOGE("Failed to write or read info of HA. (%d)\n", rc);
 		rc = NBL_ERR_CHANNEL_CLOSED;
 		goto release;
 	}
